@@ -1,11 +1,7 @@
 import streamlit as st
 from langchain_ollama import OllamaLLM
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import MinMaxScaler
 import pickle
-import xgboost as xgb
 import joblib
 
 
@@ -136,7 +132,8 @@ def chatbot_questionnaire():
         print("Categorical columns:", categorical_columns)
 
         # Step 1: Identify binary columns and categorical columns
-        binary_columns = [col for col in categorical_columns if set(df[col].unique()) <= {'Yes', 'No'}]
+        binary_columns = [ 'Dependents','Is_Married','Paperless_Billing','Phone_Service','Senior_Citizen']
+
         non_binary_columns  = [col for col in categorical_columns if col not in binary_columns]
 
         # Step 2: Apply LabelEncoder for binary columns
