@@ -146,8 +146,7 @@ def chatbot_questionnaire():
         encoded = one_hot_encoder.transform(df[non_binary_columns]) # Fit using non_binary_columns
 
        # Step 4: Add one-hot encoded columns back to the DataFrame
-        encoded_df = pd.DataFrame(encoded) # Get feature names using non_binary_columns
-      #Join encoded_df with original df
+        encoded_df = pd.DataFrame(encoded,columns=one_hot_encoder.get_feature_names_out(non_binary_columns),index=df.index)      #Join encoded_df with original df
         df = df.drop(columns=non_binary_columns)  # Drop non_binary_columns
         df = df.reset_index(drop=True) # Reset index for both DataFrames
         encoded_df = encoded_df.reset_index(drop=True) # Reset index for both DataFrames
